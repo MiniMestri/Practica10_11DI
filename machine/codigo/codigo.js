@@ -67,7 +67,6 @@ function bucle(){
     temporizador = setTimeout("bucle()",5000)
 }
 function procesaImagen(miimagen){
-console.log(miimagen)
     // Cargo una imagen que tengo en el disco duro
     imagen.src = "img/"+miimagen;
     // Me espero a que a imagen cargue, y entonces ejecuto esta función
@@ -188,5 +187,19 @@ console.log(miimagen)
         let quitoextension = quitonumero.split(".")[0]
         
         fetch("guardajson.php?archivo="+soloimagen+"&patron="+quitoextension+"&datos="+guarda)
+        
+        function elegirimagen(){
+            var fileInput = document.getElementById('fileInput');
+    
+            if (fileInput.files.length > 0) {
+                var nuevaImagen = fileInput.files[0];
+
+                procesaImagen(nuevaImagen)
+
+            } else {
+                console.log('No se seleccionó ninguna imagen.');
+            }
+        }
+
     }
 }
