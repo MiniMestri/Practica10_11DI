@@ -13,6 +13,7 @@ var contextovertical
 var contextohorizontal 
 var contextodiagonal1 
 var contextodiagonal2
+var contextodiagonal3
 var patrones = []
 var cuentapatrones = []
 window.onload = function(){
@@ -27,6 +28,7 @@ contextovertical = document.getElementById("lienzovertical").getContext("2d");
 contextohorizontal = document.getElementById("lienzohorizontal").getContext("2d");
 contextodiagonal1 = document.getElementById("lienzodiagonal1").getContext("2d");
 contextodiagonal2 = document.getElementById("lienzodiagonal2").getContext("2d");
+contextodiagonal3 = document.getElementById("lienzodiagonal3").getContext("2d");
 // Patrones
 
 patrones[0] = new Image();
@@ -37,11 +39,14 @@ patrones[2] = new Image();
 patrones[2].src = "img/diagonal1.png";
 patrones[3] = new Image();
 patrones[3].src = "img/diagonal2.png";
+patrones[4] = new Image();
+patrones[4].src = "img/diagonal3.png";
 
 cuentapatrones[0] = 0
 cuentapatrones[1] = 0
 cuentapatrones[2] = 0
 cuentapatrones[3] = 0
+cuentapatrones[4] = 0
 
 // Creo una nueva imagen en memoria de Javascript
 
@@ -76,6 +81,7 @@ function procesaImagen(miimagen){
         contextohorizontal.drawImage(patrones[1],0,0)
         contextodiagonal1.drawImage(patrones[2],0,0)
         contextodiagonal2.drawImage(patrones[3],0,0)
+        contextodiagonal3.drawImage(patrones[4],0,0)
         // Primero pinto la imagen original en el lienzo original
         contexto.drawImage(imagen,0,0);
         // Detectamos bordes en la imagen
@@ -166,6 +172,22 @@ function procesaImagen(miimagen){
                 if(suma < 4000){
                     cuentapatrones[3]++;
                     contexto3.fillStyle = "orange";
+                    contexto3.fillRect(x,y,2,2);
+                }
+            }
+        }
+
+        let muestradiagonal3 = contextodiagonal3.getImageData(0,0,8,8)
+        for(let x= 0;x<512;x++){
+            for(let y= 0;y<512;y++){
+                let trozo = contexto2.getImageData(x,y,8,8)
+                let suma = 0;
+                for(let i = 0;i<trozo.data.length;i+=4){
+                    suma += Math.abs(trozo.data[i] - muestradiagonal3.data[i])
+                }
+                if(suma < 4000){
+                    cuentapatrones[4]++;
+                    contexto3.fillStyle = "Magenta";
                     contexto3.fillRect(x,y,2,2);
                 }
             }
