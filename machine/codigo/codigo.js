@@ -67,8 +67,6 @@ fetch("../imagenes/json/imagenes.json")
     temporizador = setTimeout("bucle()",5000)
     
 })
-
-
 }
 function bucle(){
     supercontador++;
@@ -183,6 +181,7 @@ function procesaImagen(miimagen){
             }
         }
 
+         // Recorro esta imagen para diagonal3 //////////////////////////////////////
         let muestradiagonal3 = contextodiagonal3.getImageData(0,0,8,8)
         for(let x= 0;x<512;x++){
             for(let y= 0;y<512;y++){
@@ -198,6 +197,8 @@ function procesaImagen(miimagen){
                 }
             }
         }
+
+         // Recorro esta imagen para diagonal4 //////////////////////////////////////
         let muestradiagonal4 = contextodiagonal4.getImageData(0,0,8,8)
         for(let x= 0;x<512;x++){
             for(let y= 0;y<512;y++){
